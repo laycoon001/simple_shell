@@ -13,18 +13,18 @@ int main(int ac, char **av)
 
 	asm ("mov %1, %0\n\t"
 			"add $3, %0"
-			: ""=r (mv)
+			: "=r" (mv)
 			: "=r" (mv));
 
 	if (ac == 2)
 	{
-		mv = open(av [1] , O_RONLY);
+		mv = open(av[1], O_RONLY);
 
-		if (mv = -1)
+		if (mv == -1)
 		{
 			if (errno == EACESS)
 				exit(126);
-			if (errno = ENOENT)
+			if (errno == ENOENT)
 			{
 				_eputs(av[0]);
 				_eputs(": 0 : Can't open  ");
@@ -35,10 +35,10 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		data -> readfd = mv;
+		data->readfd = mv;
 	}
 	populate_env_list(data);
 	read_history(data);
 	hsh(data, av);
-	return (EXIT_SUCESS):
+	return (EXIT_SUCESS);
 }
