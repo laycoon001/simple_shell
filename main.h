@@ -72,6 +72,7 @@ typdef struct liststr
  * @reeadfd: the fd from which to read line input
  * @histcount: the history of number counts
  */
+typedef struct passinfo
 {
 	char *arg;
 	char **argv;
@@ -83,6 +84,51 @@ typdef struct liststr
 	list_t *env;
 	char *fname;
 	list_t *history;
+	list_t *alias;
+	char **environ
+	int env_changed;
+	int status;
 
-  
+	char **cmd_buf;
+	int cmd_buf_type;
+	int readfd;
+	int hiscount;
+} info_t;
 
+#define INFO_INT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL \
+	0, 0, 0}
+
+/**
+ * struct buitin - contains a buitin string and related function
+ * @type: the builtin command flag
+ * @func: the function command
+ */
+typedef struct builtin
+{
+	char *type;
+	int (*func)(info_t *);
+} builtin_table;
+
+
+/** toem_shloop.c */
+int hsh(info_t *, char **);
+int find_builtin(info_t *);
+void find_cmd(info_t *);
+void fork_cmd(info_t *);
+
+/* toem_parser.c */
+int is_cmd(info_t *, char *);
+char *dup_chars(char *, int int);
+char *find_path(info_t *, char *, char *);
+
+/* toem_errors.c */
+void _eputs(char *);
+int _eputchar(char);
+int _putfd(char c, int fd);
+int _putsfd(char *str, int fd);
+
+/* loophsh.c */
+int loophsh(char **);
+
+/* 
