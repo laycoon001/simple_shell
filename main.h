@@ -146,4 +146,39 @@ char *_strcat(char *, char *);
 /* toem_exits.c */
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
+char *_strchr(char *, char);
+
+/* toem_memory.c */
+int bfree(void **);
+
+/* toem_tokenizer.c */
+char **strtow(char *, char *);
+char **strtow2(char *, char);
+
+/* toem_realloc.c */
+char *_memset(char *, char unsigned int);
+void ffree(char **);
+void *realloc(void *, unsigned int, unsigned int);
+
+/* toem_atoi.c */
+int interactive(info_t *);
+int is_delim(char, char *);
+int _isalpha(int);
+int _atoi(char *);
+
+/* toem_buitin.c */
+int _myexit(info_t *)
+int _mycd(info_t *)
+int _myhelp(info_t *);
+
+/* toem_builtin1.c */
+int _myhistory(info_t *);
+int _myalias(info_t *);
+
+/* toem_errors1.c */
+int _erratoi(char *);
+void print_error(info_t *, char *);
+char *convert_number(long int, int, int);
+void remove_comment(char *);
+int print_d(int, int);
 
