@@ -182,3 +182,20 @@ char *convert_number(long int, int, int);
 void remove_comment(char *);
 int print_d(int, int);
 
+/*toem_getline.c */
+ssize_t get_input(info_t *);
+int _getline(info_t, char **, size_t *);
+void sigintHandler(int);
+
+/* toem_getinfo.c */
+void clear_info(info_t *);
+void set_info(info_t *, char **);
+void free_info(info_t *, int);
+
+/* toem_environ.c */
+char *_getenv(info_t *, const char *);
+int _myenv(info_t *);
+int _mysetenv(info_t *);
+int _myunsetenv(info_t *);
+int populate_env_list(info_t *);
+
