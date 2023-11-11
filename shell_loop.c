@@ -12,15 +12,15 @@ int hsh(into_t *info, char **av)
 	ssize_t v = 0;
 	int build_ret = 0;
 
-	while (v != -1 && build_ret ! 2)
+	while (v != -1 && build_ret != 2)
 	{
 		clear_info(info);
 		if (interactive(info))
 
 			_puts("$ ");
-			_eputchar(BUF_BLUSH):
+			_eputchar(BUF_BLUSH);
 				v = get_input(info);
-			if (v ! -1)
+			if (v != -1)
 			{
 				set_info(info, av);
 				build_ret = find_builtin(info);
@@ -29,13 +29,13 @@ int hsh(into_t *info, char **av)
 			}
 			else if (interactive(info))
 				_putchar('\n');
-			free (info, 0);
+			free(info, 0);
 	}
 		write_history(info);
-		free (info, 1);
+		free(info, 1);
 		if (!interactive(info) && info->status)
 			exit(info->status);
-		if (build_ret = -2)
+		if (build_ret == -2)
 		{
 			if (in->err_num == -1)
 				exit(info->status);
@@ -136,7 +136,7 @@ void fork_cmd(info_t *info)
 		if (execve(info->path, info-> argv, get_environ(info)) == -1)
 		{
 			free_info(info, 1);
-			if(errno == EACESS)
+			if (errno == EACESS)
 				exit(126);
 			exit(1);
 		}
@@ -146,7 +146,7 @@ void fork_cmd(info_t *info)
 		wait(&(info->status));
 		if (WIFEXITED(info->status))
 		{
-			info->status = WEXITSTATUS (info->status);
+			info->status = WEXITSTATUS(info->status);
 			if (info->status == 126)
 				print_error(info, "Permission denied\n");
 		}
