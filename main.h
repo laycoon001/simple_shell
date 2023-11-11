@@ -29,9 +29,9 @@
 
 /* 1 if using system getline() */
 #define USE_GETLINE 0
-#define USE_STROK 0
+#define USE_STRTOK 0
 
-#define HIST_fILE	"simple_shell_history"
+#define HIST_FILE	"simple_shell_history"
 #define HIST_MAX	4096
 
 extern char **environ;
@@ -43,7 +43,7 @@ extern char **environ;
  * @str: a string
  * @next: points to the next node
  */
-typdef struct liststr
+typedef struct liststr
 {
 	int num;
 	char *str;
@@ -92,11 +92,11 @@ typedef struct passinfo
 	char **cmd_buf;
 	int cmd_buf_type;
 	int readfd;
-	int hiscount;
+	int histcount;
 } info_t;
 
-#define INFO_INT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL \
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
 /**
@@ -119,7 +119,7 @@ void fork_cmd(info_t *);
 
 /* toem_parser.c */
 int is_cmd(info_t *, char *);
-char *dup_chars(char *, int int);
+char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 
 /* toem_errors.c */
@@ -184,7 +184,7 @@ int print_d(int, int);
 
 /*toem_getline.c */
 ssize_t get_input(info_t *);
-int _getline(info_t, char **, size_t *);
+int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 
 /* toem_getinfo.c */
@@ -202,7 +202,7 @@ int populate_env_list(info_t *);
 /* toem_getenv.c */
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *, char *);
+int _setenv(info_t *, char *, char *);
 
 /* toem_history.c */
 char *get_history_file(info_t *info);
