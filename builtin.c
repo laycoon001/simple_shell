@@ -29,7 +29,7 @@ int _myexit(info_t *info)
  * @info: for maintaing constant fuction prototype
  * Return: 0
  */
-int _mycd(info *info)
+int _mycd(info_t *info)
 {
 	char *s, *dir, buffer[1024];
 	int chdir_ret;
@@ -47,7 +47,7 @@ int _mycd(info *info)
 	}
 	else if (_strcmp(info->argv[1], "-") == 0)
 	{
-		if (!_getenv(info, "OLDPWD=")) 
+		if (!_getenv(info, "OLDPWD="))
 		{
 			_puts(s);
 			_putchar('\n');
@@ -57,7 +57,7 @@ int _mycd(info *info)
 		chdir_ret = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
-		chdir_ret = chdir (info->argv[1]);
+		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
 		print_error(info, "can't cd to ");
@@ -82,7 +82,7 @@ int _myhelp(info_t *info)
 	char **arg_array;
 
 	arg_arry = info->argv;
-	_puts("help call works. Function not yet implemneted \n"):
+	_puts("help call works. Function not yet implemneted \n");
 		if (0)
 			_puts(*arg_array);
 	return (0);
