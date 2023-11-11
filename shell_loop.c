@@ -7,16 +7,15 @@
  * Return: 0 on exit_sucess, error code on 1
  */
 
-int hsh(into_t *info, char **av)
+int hsh(info_t *info, char **av)
 {
 	ssize_t v = 0;
 	int build_ret = 0;
 
-	while (v != -1 && build_ret != 2)
+	while (v != -1 && build_ret != -2)
 	{
 		clear_info(info);
 		if (interactive(info))
-
 			_puts("$ ");
 			_eputchar(BUF_BLUSH);
 				v = get_input(info);
@@ -32,21 +31,22 @@ int hsh(into_t *info, char **av)
 			free(info, 0);
 	}
 		write_history(info);
-		free(info, 1);
+		free_info(info, 1);
 		if (!interactive(info) && info->status)
 			exit(info->status);
 		if (build_ret == -2)
 		{
-			if (in->err_num == -1)
+			if (info->err_num == -1)
 				exit(info->status);
 			exit(info->err_num);
 		}
 		return (build_ret);
 }
 
+
 /**
- * find_builtins - searching for builtin commands
- * info: data struct and parameter
+ * find_builtin - searching for builtin commands
+ * @info: data struct and parameter
  * Return: -1 if not found, 0 on success
  */
 int find_builtin(info_t *info)
@@ -64,11 +64,11 @@ int find_builtin(info_t *info)
 		{NULL, NULL}
 	};
 
-	for (i = 0, builtintbl[i].type, i++)
+	for (i = 0; builtintbl[i].type; i++)
 		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
 		{
 			info->line_count++;
-			build_in_rt = bultintbl[i].func(info);
+			build_in_rt = builtintbl[i].func(info);
 			break;
 		}
 	return (build_in_rt);
@@ -89,10 +89,10 @@ void find_cmd(info_t *info)
 	if (info->linecount_flag == 1)
 	{
 		info->line_count++;
-		info->line_count_flag = 0;
+		info->linecount_flag = 0;
 	}
-	for (i =0, j = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], "\t\n"))
+	for (i = 0, j = 0; info->arg[i]; i++)
+		if (!is_delim(info->arg[i], " \t\n"))
 		j++;
 	if (!j)
 		return;
@@ -100,7 +100,7 @@ void find_cmd(info_t *info)
 	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
 	if (path)
 	{
-		info->path path;
+		info->path = path;
 		fork_cmd(info);
 	}
 	else
@@ -133,10 +133,10 @@ void fork_cmd(info_t *info)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(info->path, info-> argv, get_environ(info)) == -1)
+		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
 			free_info(info, 1);
-			if (errno == EACESS)
+			if (errno == EACCES)
 				exit(126);
 			exit(1);
 		}
@@ -151,4 +151,5 @@ void fork_cmd(info_t *info)
 				print_error(info, "Permission denied\n");
 		}
 	}
+
 }
