@@ -4,7 +4,7 @@
  * @info: for maintaining constant function prototype
  * Return: 0 always
  */
-int _myhsitory(info_t *info)
+int _myhistory(info_t *info)
 {
 	print_list(info->history)
 		return (0);
@@ -49,7 +49,7 @@ int set_alias(info_t *info, char *str)
 		return (unset_alias(info, str));
 
 	unset_alias(info, str);
-	return (add_node_end(&info->alias), str, 0) == NULL);
+	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 
 /**
@@ -64,7 +64,7 @@ int print_alias(list_t *node)
 	if (node)
 	{
 		p = _strchr(node->str, '=');
-		for (a = node-> str; a <= p; a++)
+		for (a = node->str; a <= p; a++)
 			_putchar(*a);
 		_putchar('\'');
 		_puts(p + 1);
@@ -90,10 +90,10 @@ int _myalias(info_t *info)
 		node = info->alias;
 		while (node)
 		{
-			print_alias(node):
+			print_alias(node);
 				node = node->next;
 		}
-		return (0)
+		return (0);
 	}
 	for (i = 1; info->argv[i]; i++)
 	{
