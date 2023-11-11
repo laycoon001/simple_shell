@@ -39,22 +39,22 @@ int _mycd(info *info)
 		_puts("TODO: >>getwcd failure emsg herr<<\n");
 	if (!info->argv[1])
 	{
-		dir = _getenv(info, "HOME=);
+		dir = _getenv(info, "HOME=");
 		if (!dir)
 			chdir_ret = chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
 		else
 			chdir_ret = chdir(dir);
 	}
-	else if (_strcmp(info_>argv[1], "-") == 0)
+	else if (_strcmp(info->argv[1], "-") == 0)
 	{
-		if (!_getenv(info, "OLDPWD+")) 
+		if (!_getenv(info, "OLDPWD=")) 
 		{
 			_puts(s);
 			_putchar('\n');
 			return (1);
 		}
 		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
-		chdir_ret = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "\");
+		chdir_ret = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		chdir_ret = chdir (info->argv[1]);
