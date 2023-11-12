@@ -57,15 +57,14 @@ char *_strchr(const char *str, char c)
 	{
 		if (*str == c)
 		{
-			return (char *)str;
+			return ((char *)str);
 		}
 		str++;
 	}
 	if (c == '\0')
 	{
-		return (char *)str;
+		return ((char *)str);
 	}
-	
 	return (NULL);
 }
 
@@ -82,7 +81,7 @@ char *delete_char(char *str, char ch)
 	int length = _strlen(str);
 	int i, j;
 
-	for (i = 0, j= 0; i< length; i++)
+	for (i = 0, j = 0; i < length; i++)
 	{
 		if (str[i] != ch)
 		{
@@ -93,4 +92,28 @@ char *delete_char(char *str, char ch)
 	return (str);
 }
 
+/**
+ * int_to_str - converting of integers to strings
+ * @number: the integer to be converted
+ * @result: buffer to store
+ */
+
+void int_to_str(unsigned long int number, char *result)
+{
+	int num_digits = 1;
+	unsigned long int temp_num = number;
+
+	while (temp_num /= 10)
+	{
+		num_digits++;
+	}
+
+	result[num_digits] = '\0';
+
+	while (number != 0)
+	{
+		result[--num_digits] = (number % 10) + '0';
+		number /= 10;
+	}
+}
 

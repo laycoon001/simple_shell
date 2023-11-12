@@ -11,10 +11,11 @@
 #include <ctype.h>
 #include <limits.h>
 
-extern char **env;
+extern char **environ;
 
 /********/
 int _atoi(char *str);
+char *_strdup(const char *str);
 size_t _strlen(const char *str);
 int _strcmp(const char *str1, const char *str2);
 int _strncmp(const char *str1, const char *str2, size_t n);
@@ -24,7 +25,7 @@ char *_strchr(const char *str, char c);
 char *delete_char(char *str, char ch);
 /****/
 
-void prompt();
+void prompt(void);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *findPath(char *filename);
 void execute_command(char *args[]);
