@@ -57,9 +57,9 @@ int _strcmp(const char *str1, const char *str2)
 
 	for (len = 0; str1[len] == str2[len] && str1[len] != '\0'; len++)
 		;
-	if (str[len] > str[len])
+	if (str1[len] > str2[len])
 		return (1);
-	else if (str[len] < str2[len])
+	else if (str1[len] < str2[len])
 		return (-1);
 	return (0);
 }

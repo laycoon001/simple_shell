@@ -1,5 +1,5 @@
-#ifndef SHELL_FUNCTIONS_H
-#define SHELL_FUNCTIONS_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #define BUFFER_SIZE 128
 
@@ -12,6 +12,17 @@
 #include <limits.h>
 
 extern char **env;
+
+/********/
+int _atoi(char *str);
+size_t _strlen(const char *str);
+int _strcmp(const char *str1, const char *str2);
+int _strncmp(const char *str1, const char *str2, size_t n);
+char *_strcat(char *dest, const char *src);
+char *_strcpy(char *dest, const char *src);
+char *_strchr(const char *str, char c);
+char *delete_char(char *str, char ch);
+/****/
 
 void prompt();
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);

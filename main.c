@@ -1,12 +1,11 @@
-#include "shell_function.h"
+#include "main.h"
 
-<<<<<<< HEAD
 #define MAX_ARGS 10
 
 int main() {
 	char *command = NULL;
 	char *args[MAX_ARGS];
-	ssize_t red;
+	ssize_t read;
 	size_t len;
 	char *token;
 	int i;
@@ -28,19 +27,10 @@ int main() {
 			args[i++] = token;
 			token = strtok(NULL, " ");
 		}
-		args[i] NULL;
-		execute_command(args);
+		args[i] = NULL;
 
-		free(command);
-		return 0;
+		execute_command(args);
 }
-=======
-/**
- * main - file entry point description
- * @ac: argument count
- * @av: argument vector
- * Return: 1 on errno, 0 on success
- */
-int main()
-{
->>>>>>> 8649151867274507879a4ac14ea3ad282bcaa4e4
+		free(command);
+		return (0);
+}

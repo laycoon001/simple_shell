@@ -9,19 +9,20 @@ ssize_t _getline(char **line, size_t *size)
 {
 	int c;
 	size_t index = 0;
-	*size = BUFFER_SIZE;
 	char *temp;
+	size_t read_char;
+	*size = BUFFER_SIZE;
 	*line = (char *)malloc(*size);
 
 	if (line == NULL || size == NULL)
 		return (-1);
 
-	while (read(STDIN_FILENO, &c, 1) == 1 && c != '\n')
+	while ((read_char = read(STDIN_FILENO, &c, 1)) == 1 && c != '\n')
 	{
 		if (index == *size - 1)
 		{
 			*size *= 2;
-			temp = _realloc(*line, read, *size);
+			temp = _realloc(*line, read_char, *size);
 
 			if (temp == NULL)
 			{
