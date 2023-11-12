@@ -1,5 +1,6 @@
 #include "shell_function.h"
 
+<<<<<<< HEAD
 #define MAX_ARGS 10
 
 int main() {
@@ -33,3 +34,13 @@ int main() {
 		free(command);
 		return 0;
 }
+=======
+/**
+ * main - file entry point description
+ * @ac: argument count
+ * @av: argument vector
+ * Return: 1 on errno, 0 on success
+ */
+int main()
+{
+>>>>>>> 8649151867274507879a4ac14ea3ad282bcaa4e4
