@@ -27,10 +27,11 @@ void execute_command(char *args[])
 	{
 		char **env = environ;
 
-		while (env)
+		while (*env)
 		{
 			write(STDOUT_FILENO, *env, _strlen(*env));
 			write(STDOUT_FILENO, "\n", 1);
+			env++;
 		}
 	}
 	else

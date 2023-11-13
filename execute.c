@@ -21,9 +21,9 @@ char *findPath(char *filename)
 		return (NULL);
 	while (direcPath != NULL)
 	{
-		length = sizeof(filename) + sizeof(direcPath) + 2;
-		fullPath = _realloc(fullPath, length);
-		printf(fullPath, length, "%s/%s", direcPath, filename);
+		length = _strlen(filename) + _strlen(direcPath) + 2;
+		fullPath = _realloc(fullPath, sizeof(fullPath), length);
+		snprintf(fullPath, length, "%s/%s", direcPath, filename);
 
 		if (access(fullPath, F_OK | X_OK) == 0)
 		{

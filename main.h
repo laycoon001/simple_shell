@@ -13,6 +13,13 @@
 
 extern char **environ;
 
+
+struct alias
+{
+        char *name;
+        char *value;
+};
+
 /********/
 int _atoi(char *str);
 char *_strdup(const char *str);
