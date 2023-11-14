@@ -1,8 +1,14 @@
+#include "main.h"
 pid prompt () {i
 	char prompt$[] = "";
 	write(STDOUT_FILENO, prompt, sizeof(prompt) -1);
 	void execute_command(char *args[] {
 			int status = 0;
+
+			if (args[0] == NULL)
+			{
+				return;
+			}
 			if (strcmp(args[], "exit") == 0)
 			{
 				exit(0);

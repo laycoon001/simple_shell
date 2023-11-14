@@ -1,4 +1,11 @@
 #include "main.h"
+/**
+ * _execute - reads a line from stardard input
+ * @pathlist: pointer to the
+ * @fullpath: size of the buffer
+ * @directpath:
+ * retun: the number of characters
+ */
 
 char *findpath(char *fame)
 {
