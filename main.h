@@ -11,14 +11,13 @@
 #include <ctype.h>
 #include <limits.h>
 
-extern char **environ;
-
-
 struct alias
 {
-        char *name;
-        char *value;
+	char *name;
+	char *value;
 };
+
+extern char **environ;
 
 /********/
 int _atoi(char *str);

@@ -8,7 +8,7 @@ void prompt(void)
 {
 	char prompt[] = "$ ";
 
-	write(STDOUT_FILENO, prompt, sizeof(prompt) - 1);
+	write(0, prompt, sizeof(prompt) - 1);
 }
 
 /**
@@ -32,11 +32,10 @@ void execute_command(char *args[])
 	{
 		char **env = environ;
 
-		while (*env)
+		while (env)
 		{
 			write(STDOUT_FILENO, *env, _strlen(*env));
 			write(STDOUT_FILENO, "\n", 1);
-			env++;
 		}
 	}
 	else if (_strcmp(args[0], "alias") == 0)
