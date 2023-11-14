@@ -1,16 +1,5 @@
 #include "main.h"
 
-<<<<<<< HEAD
-/**
- * main - file entry point description
- * @ac: argument count
- * @av: argument vector
- * Return: 1 on errno, 0 on success
- */
-
-
-=======
->>>>>>> f28848d74e9381828f716059f2bd80527622be7b
 #define MAX_ARGS 10
 
 /**
@@ -54,9 +43,3 @@ int main(void)
 		free(command);
 		return (0);
 }
-<<<<<<< HEAD
-
-int main()
-
-=======
->>>>>>> f28848d74e9381828f716059f2bd80527622be7b
