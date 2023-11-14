@@ -38,4 +38,12 @@ char *findPath(char *filename);
 void execute_command(char *args[]);
 ssize_t _getline(char **line, size_t *size);
 
+
+/**handle_alias**/
+void handle_alias(char **args);
+void create_alias(char *str);
+void list_aliases(void);
+void print_alias(char *name);
+int execute_alias(char **args);
+
 #endif

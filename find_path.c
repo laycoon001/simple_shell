@@ -34,6 +34,10 @@ void execute_command(char *args[])
 			env++;
 		}
 	}
+	else if (_strcmp(args[0], "alias") == 0)
+	{
+		handle_alias(args);
+	}
 	else
 	{
 		args[0] = findPath(args[0]);

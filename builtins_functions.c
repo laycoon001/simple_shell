@@ -15,7 +15,7 @@ void handle_alias(char **args)
 {
 	int v;
 
-	if (args[v] == NULL)
+	if (args[1] == NULL)
 	{
 		list_aliases();
 	}
@@ -23,7 +23,7 @@ void handle_alias(char **args)
 	{
 		for (v = 1; args[v] != NULL; v++)
 		{
-			if (_strchr(args[v], '=') == NULL)
+			if (_strchr(args[v], '=') != NULL)
 				create_alias(args[v]);
 			else
 			{
@@ -40,8 +40,8 @@ void handle_alias(char **args)
  */
 void create_alias(char *str)
 {
-	char *name = strtok(str, '=');
-	char *value = strtok(NULL, '=');
+	char *name = strtok(str, "=");
+	char *value = strtok(NULL, "=");
 	int quit = 0, x, y;
 
 	for (y = 0; y < num_alias; y++)
@@ -54,10 +54,21 @@ void create_alias(char *str)
 			break;
 		}
 	}
+	for (x = 0; x < num_alias; x++)
+	{
+		if (_strcmp(name, aliasee[x].name) == 0)
+		{
+			free(aliasee[x].value);
+			aliasee[x].value = _strdup(value);
+			quit = 1;
+			break;
+		}
+	}
+
 	if (!quit)
 	{
 		aliasee[num_alias].name = _strdup(name);
-		aliasee[v].value = _strdup(value);
+		aliasee[num_alias].value = _strdup(value);
 
 		num_alias++;
 	}
@@ -72,7 +83,7 @@ void list_aliases(void)
 {
 	int v;
 
-	for (v = 0; i < num_alias; v++)
+	for (v = 0; v < num_alias; v++)
 	{
 		printf("%s='%s'\n", aliasee[v].name, aliasee[v].value);
 	}
@@ -88,7 +99,7 @@ void print_alias(char *name)
 {
 	int v, search_alias = 0;
 
-	for (v = 0; v < num_alias, v++)
+	for (v = 0; v < num_alias; v++)
 	{
 		if (_strcmp(aliasee[v].name, name) == 0)
 		{
@@ -97,7 +108,7 @@ void print_alias(char *name)
 			break;
 		}
 	}
-	if (!serach_alias)
+	if (!search_alias)
 	{
 		write(1, name, sizeof(name));
 		write(1, "Not Found", 1);
@@ -119,10 +130,10 @@ int execute_alias(char **args)
 
 	for (v = 0; v < num_alias; v++)
 	{
-		if (_strcmp(aliasee[v].name, argv[0]) == 0)
+		if (_strcmp(aliasee[v].name, args[0]) == 0)
 		{
 			search_alias = 1;
-			safe = strtok(aliases[v].value, " ");
+			safe = strtok(aliasee[v].value, " ");
 			while (safe != NULL)
 			{
 				arg[y++] = safe;
@@ -131,16 +142,15 @@ int execute_alias(char **args)
 
 			while (args[z++] != NULL)
 			{
-				args[y++] = args[z];
+				arg[y++] = args[z];
 			}
 
-			args[y] = NULL;
+			arg[y] = NULL;
 			break;
 		}
 	}
 	if (!search_alias)
 		return (-1);
-
-		execute_command(args);
-		return (0);
+	execute_command(arg);
+	return (0);
 }
