@@ -3,6 +3,10 @@
 
 struct alias aliasee[100];
 
+/**
+ * num_alias - number of aliases
+ */
+
 int num_alias = 0;
 
 /**
