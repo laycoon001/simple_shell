@@ -18,8 +18,8 @@ extern char **environ;
 
 struct alias
 {
-        char *name;
-        char *value;
+	char *name;
+	char *value;
 };
 
 /********/
